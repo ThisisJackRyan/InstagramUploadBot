@@ -2,6 +2,7 @@ import os
 import time
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from PIL import Image
 chromedriverPath = "C:\Program Files (x86)\chromedriver.exe" #for Windows
 #chromedriverPath = "/Users/jackcryan/Downloads/chromeDrivers/chromedriver" #For Mac
 
@@ -25,14 +26,6 @@ def login(email, password):
     instapassword.send_keys(Keys.RETURN)
     postButton()
 
-def saveInfo():
-    notNow = driver.find_element_by_xpath('/html/body/div[1]/section/main/div/div/div/div/button')
-    notNow.click()
-
-
-def notifcations():
-    notifictationNotNow = driver.find_element_by_xpath('/html/body/div[5]/div/div/div/div[3]/button[2]')
-    notifictationNotNow.click()
 
 def postButton():
     time.sleep(5)
@@ -43,11 +36,23 @@ def postButton():
 def selectImage():
     time.sleep(5)
     selection = driver.find_element_by_xpath('/html/body/div[8]/div[2]/div/div/div/div[2]/div[1]/div/div/div[2]/div/button')
-    selection.click()
-        # here I get the path to the desired directory from user input, but it could come from elsewhere
-    #path_to_directory = Path(input("enter the path to the folder : "))
+    #selection.click()
 
-    #extension_of_interest = ".jpg"
+    imagePath = []
+    pathToPictures = os.listdir("uploadpictures") #list
+    for pic in pathToPictures:
+        extraPath = "\\" 
+        print(extraPath + pic)
+        imagePath.append(extraPath + pic) 
+    #uploadImage =Image.open(r"C:\Users\Jack Ryan\Desktop\Coding\Python\InstagramUploadBot\Uploadpictures" + imagePath[1])
+    inputImage = driver.find_element_by_xpath("/html/body/div[8]/div[2]/div/div/div/div[2]/div[1]/form/input")
+    inputImage.send_keys("C:\\Users\\Jack Ryan\\Desktop\\Coding\\Python\\InstagramUploadBot\\Uploadpictures" + imagePath[1] )
+
+
+        # here I get the path to the desired directory from user input, but it could come from elsewhere
+    #path_to_directory = Path(input("C:\Users\Jack Ryan\Pictures\Uploadpictures"))
+
+    #extension_of_interest = ".png"
    # filepaths_of_interest = []
 
    # for entry in path_to_directory.iterdir():
@@ -61,7 +66,7 @@ def selectImage():
     #for filepath_of_interest in filepaths_of_interest:
       #  os.startfile(filepath_of_interest, "open")
 
-time.sleep(5)
+time.sleep(3)
 login(loginEmail, loginPassword)
 
 #saveInfo()
@@ -78,13 +83,13 @@ login(loginEmail, loginPassword)
 
 
 
-path = os.listdir("uploadpictures")
-print(path)
-lala = 0
-for i in path:
-    if i == "Hwlllo.txt":
-        b = i
-        print(b)
+#path = os.listdir("uploadpictures")
+#print(path)
+#lala = 0
+#for i in path:
+    #if i == "Hwlllo.txt":
+       # b = i
+        #print(b)
 
 
 #File_object = open(r"File_Name", "Access_Mode")
