@@ -24,72 +24,92 @@ def login(email, password):
     instapassword.send_keys(password)
     time.sleep(2)
     instapassword.send_keys(Keys.RETURN)
-    postButton()
+    selectImage()
 
 
 def postButton():
     time.sleep(5)
     postButton = driver.find_element_by_xpath('/html/body/div[1]/section/nav/div[2]/div/div/div[3]/div/div[3]/div/button')
     postButton.click()
-    selectImage()
+    
 
 def selectImage():
-    time.sleep(5)
-    selection = driver.find_element_by_xpath('/html/body/div[8]/div[2]/div/div/div/div[2]/div[1]/div/div/div[2]/div/button')
-    #selection.click()
-
     imagePath = []
     pathToPictures = os.listdir("uploadpictures") #list
+    num = 0
     for pic in pathToPictures:
+        postButton()
         extraPath = "\\" 
         print(extraPath + pic)
         imagePath.append(extraPath + pic) 
-    #uploadImage =Image.open(r"C:\Users\Jack Ryan\Desktop\Coding\Python\InstagramUploadBot\Uploadpictures" + imagePath[1])
+        uploadImage(num, imagePath)
+        num += 1
+
+
+def uploadImage(num, imagePath):
     inputImage = driver.find_element_by_xpath("/html/body/div[8]/div[2]/div/div/div/div[2]/div[1]/form/input")
-    inputImage.send_keys("C:\\Users\\Jack Ryan\\Desktop\\Coding\\Python\\InstagramUploadBot\\Uploadpictures" + imagePath[1] )
+    inputImage.send_keys("C:\\Users\\Jack Ryan\\Desktop\\Coding\\Python\\InstagramUploadBot\\Uploadpictures" + imagePath[num] )
+    next()
 
+def next():
+    time.sleep(2)
+    firstNext = driver.find_element_by_xpath("/html/body/div[6]/div[2]/div/div/div/div[1]/div/div/div[3]/div/button")
+    firstNext.click()
+    time.sleep(2)
+    secondNext = driver.find_element_by_xpath('/html/body/div[6]/div[2]/div/div/div/div[1]/div/div/div[3]/div/button')
+    secondNext.click()
+    caption()
 
-        # here I get the path to the desired directory from user input, but it could come from elsewhere
-    #path_to_directory = Path(input("C:\Users\Jack Ryan\Pictures\Uploadpictures"))
+def caption():
+    pickCaption = input("Tell me the account you are on Midwest (m) or Van (v)")
+    if pickCaption == 'm' or pickCaption == 'M':
+        time.sleep(3)
+        midwestCaption()
+    elif pickCaption == 'v' or pickCaption == "v":
+        time.sleep(3)
+        vanCaption()
+    else:
+        print(" Please only type m or v ")
+        time.sleep(3)
+        caption()
 
-    #extension_of_interest = ".png"
-   # filepaths_of_interest = []
+def midwestCaption():
+    midwestCaption = driver.find_element_by_xpath("/html/body/div[6]/div[2]/div/div/div/div[2]/div[2]/div/div/div/div[2]/div[1]/textarea")
+    midwestCaption.send_keys("Follow For More!!!")
+    i = 0
+    while i < 10:
+        midwestCaption.send_keys(Keys.RETURN)
+        midwestCaption.send_keys(".")
+        i += 1
 
-   # for entry in path_to_directory.iterdir():
-        #if entry.is_file() and entry.name.endswith(extension_of_interest):
-           # print("match: " + str(entry))
-            #filepaths_of_interest.append(entry)
-       # else:
-           # print("ignored: " + str(entry))
+    midwestCaption.send_keys(Keys.RETURN)
+    midwestCaption.send_keys("#midwest #midwestlife #midwestisthebest #camping #campinglife #campinglove #campinglife⛺️ #camp #hiking #hikingadventures #fishing #fish #fishinglife #northdakota #southdakota #minnesota #wisconsin #michigan #ohio #indiana #iowa #nebraska #kansas #missouri ")
+    share()
 
-   # print("now opening ...")
-    #for filepath_of_interest in filepaths_of_interest:
-      #  os.startfile(filepath_of_interest, "open")
+def vanCaption():
+    vanCaption = driver.find_element_by_xpath("/html/body/div[6]/div[2]/div/div/div/div[2]/div[2]/div/div/div/div[2]/div[1]/textarea")
+    vanCaption.send_keys("Follow For More!!!")
+    i = 0
+    while i < 10:
+        vanCaption.send_keys(Keys.RETURN)
+        vanCaption.send_keys(".")
+        i += 1
+        
+    vanCaption.send_keys(Keys.RETURN)
+    vanCaption.send_keys("#vanlife #fishing #camping #campinglife #campingtrip #campinggear #campinglife⛺️ #campinglove #camp #hiking #hikingadventures #suzuki #vwbus #volkswagen #van #buslife #buslifeadventure #busliving #campervan #campervanlife ")
+    share()
 
+def share():
+    time.sleep(3)
+    sharebutton = driver.find_element_by_xpath("/html/body/div[6]/div[2]/div/div/div/div[1]/div/div/div[3]/div/button")
+    sharebutton.click()
+    time.sleep(3)
+    exit = driver.find_element_by_xpath("/html/body/div[6]/div[1]/button")
+    exit.click()
+    time.sleep(15)
+    return
+    
+
+       
 time.sleep(3)
 login(loginEmail, loginPassword)
-
-#saveInfo()
-#notifcations()
-
-
-
-
-
-
-
-
-
-
-
-
-#path = os.listdir("uploadpictures")
-#print(path)
-#lala = 0
-#for i in path:
-    #if i == "Hwlllo.txt":
-       # b = i
-        #print(b)
-
-
-#File_object = open(r"File_Name", "Access_Mode")
