@@ -1,15 +1,19 @@
 import os
 import time
+import userInterface
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-from PIL import Image
+
 chromedriverPath = "C:\Program Files (x86)\chromedriver.exe" #for Windows
 #chromedriverPath = "/Users/jackcryan/Downloads/chromeDrivers/chromedriver" #For Mac
 
+loginEmail= userInterface.userEmail
+loginPassword = userInterface.userPassword
+print(loginEmail)
+print(loginPassword)
+pickCaption = userInterface.account
+print(pickCaption)
 
-
-loginEmail = input("What is your login Email")
-loginPassword = input("What is your login Password")
 
 
 driver = webdriver.Chrome(chromedriverPath)
@@ -31,7 +35,6 @@ def postButton():
     time.sleep(5)
     postButton = driver.find_element_by_xpath('/html/body/div[1]/section/nav/div[2]/div/div/div[3]/div/div[3]/div/button')
     postButton.click()
-    
 
 def selectImage():
     imagePath = []
@@ -61,11 +64,10 @@ def next():
     caption()
 
 def caption():
-    pickCaption = input("Tell me the account you are on Midwest (m) or Van (v)")
-    if pickCaption == 'm' or pickCaption == 'M':
+    if pickCaption == 'm':
         time.sleep(3)
         midwestCaption()
-    elif pickCaption == 'v' or pickCaption == "v":
+    elif pickCaption == 'v':
         time.sleep(3)
         vanCaption()
     else:
@@ -103,7 +105,7 @@ def share():
     time.sleep(3)
     sharebutton = driver.find_element_by_xpath("/html/body/div[6]/div[2]/div/div/div/div[1]/div/div/div[3]/div/button")
     sharebutton.click()
-    time.sleep(3)
+    time.sleep(10)
     exit = driver.find_element_by_xpath("/html/body/div[6]/div[1]/button")
     exit.click()
     time.sleep(15)
