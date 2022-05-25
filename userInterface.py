@@ -1,6 +1,9 @@
 from tkinter import *
+import startUp
+import keyring
 root = Tk()
 root.geometry("300x300")
+
 def infoStuff(email, password):
     global userEmail
     global userPassword
