@@ -2,10 +2,16 @@
 import keyring
 import pickle
 from tkinter import *
+from InstagramMain import *
+
+
+
 
 root = Tk()
 root.geometry("500x400")
 
+def test():
+    print("whoo")
 
 instaUsernames = []
 instaPassword = []
@@ -73,8 +79,8 @@ def addNewAccount(n,e,p):
 #Shows name, email, password and has buttons to remove or edit 
 def thisAccount(value):
     printY(value)
-    name = accounts[value]
-    name = Label(root, text=name, width = 40 )
+    names = accounts[value]
+    name = Label(root, text=names, width = 40 )
     name.grid(row=1,column=2)
     nameText = Label(root, text = "Name:")
     nameText.grid(row=1,column=1, sticky="se")
@@ -88,7 +94,31 @@ def thisAccount(value):
     passwordText.grid(row=3,column=1,sticky="se")
     edit = Button(root, text="edit", command=lambda: editInfo(name, email, password, value))
     edit.grid(row=5,column=1)
+    post = Button(root, text="Post", command=lambda: postPic(value))
+    post.grid(row=5, column=2)
 
+
+def postPic(value):
+    name = "v"#fix this Just doing this for caption and ease of running but I need to make a preset caption
+    #name = accounts[value]
+    email = getEmail(value)
+    password = getPassword(value)
+    root.destroy()
+    bot(name, email,password)
+
+
+#def setInfo(value):
+    #global userEmail
+    # global userPassword
+    #global account 
+
+    #name = accounts[value]
+
+   
+
+    #userPassword = str(password)
+    #userEmail = str(email)
+    # account = str(name)
 
 #removes account from list and calls to update pickle
 def removeAccount(value):

@@ -22,25 +22,30 @@ def createMainAccount(l,c,b):
     usernameText.grid(row=2,column=0,sticky="se")
     passwordText = Label(root, text = "Password:")
     passwordText.grid(row=3,column=0,sticky="se")
-
+    enter = Button(root, text= "Enter", command = lambda: push(name,username,password))
+    enter.grid(row=4,column=0)
 
     name = Entry(root, width=35)
     name.grid(row=1, column=1)
     username = Entry(root, width=35)
     username.grid(row=2, column=1)
     password = Entry(root, width=35)
-    password.grid(row=3, grid=1)
-    enter = Button(root, command = push(name,username,password))
-    enter.grid(row=4,column=0)
+    password.grid(row=3, column=1)
+   
 
     def push(n,u,p):
         tempN = n.get()
         tempU = u.get()
         tempP = p.get()
-        keyring.set_password(tempN, "email", tempU)
-        keyring.set_password(tempN, "email", tempU)
+        keyring.set_password(tempN, "username", tempU)
+        keyring.set_password(tempN, "password", tempP)
 
+        print("name:" + tempN)
         print("username: " + tempU)
         print("password: " + tempP)
+        root.destroy()
+        import login
+
+
 startUp()
 root.mainloop()
