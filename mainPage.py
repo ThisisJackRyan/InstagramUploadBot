@@ -32,6 +32,9 @@ def getPassword(value):
     name = accounts[value]
     return keyring.get_password(name, "password")
 
+def getCaption(value):
+    return captions[value]
+
 
 
 #outputs the list on the side of display -- needs to make so that it can be updated
@@ -59,19 +62,27 @@ def newAccount():
     password.grid(row=3,column=2)
     passwordText = Label(root, text = "Password:")
     passwordText.grid(row=3,column=1,sticky="se")
-    addAccount = Button(root, text="Add Account", command=lambda: addNewAccount(name, email, password))
+    caption = Text(root, width =30, height= 10)
+    caption.grid(row=4, column=2, sticky ="w")
+    captionText =Label(root, text ="Caption:")
+    captionText.grid(row=4, column=1)
+    addAccount = Button(root, text="Add Account", command=lambda: addNewAccount(name, email, password, caption))
     addAccount.grid(row=5,column=1)
 
 #shoves it into the software
-def addNewAccount(n,e,p):
+def addNewAccount(n,e,p,c):
     tempN = n.get()
     tempE = e.get()
     tempP = p.get()
+    tempC = c.get("1.0","end-1c")
+    print(tempC)
 
     accounts.append(tempN)
+    captions.append(tempC)
     keyring.set_password(tempN, "email", tempE)
     keyring.set_password(tempN, "password", tempP)
     print(accounts)
+    print(captions)
     updatePickle()
     
 
@@ -95,7 +106,16 @@ def thisAccount(value):
     edit = Button(root, text="edit", command=lambda: editInfo(name, email, password, value))
     edit.grid(row=5,column=1)
     post = Button(root, text="Post", command=lambda: postPic(value))
-    post.grid(row=5, column=2)
+    post.grid(row=6, column=1)
+    caption = Label(root, text=getCaption(value))
+    caption.grid(row=4, column=2, sticky ="w")
+    captionText =Label(root, text ="Caption:")
+    captionText.grid(row=4, column=1)
+
+def setCaption(captions):
+    tempC = captions.get("1.0","end-1c")
+    print(tempC)
+
 
 
 def postPic(value):
@@ -107,23 +127,12 @@ def postPic(value):
     bot(name, email,password)
 
 
-#def setInfo(value):
-    #global userEmail
-    # global userPassword
-    #global account 
-
-    #name = accounts[value]
-
-   
-
-    #userPassword = str(password)
-    #userEmail = str(email)
-    # account = str(name)
 
 #removes account from list and calls to update pickle
 def removeAccount(value):
     print(value)
     accounts.pop(value)
+    #captions.pop(value)
     updatePickle()
 
 
@@ -181,6 +190,9 @@ def updatePasswords(value, n,e,p):
 def updatePickle():
     with open("accounts", "wb")as accountsList:
         pickle.dump(accounts, accountsList)
+    with open("captions", "wb")as captionsList:
+        pickle.dump(captions, captionsList)
+
    
 
 try:
@@ -190,11 +202,26 @@ try:
         if accounts == None:
             print("New List after Loading")
             accounts = []
+    
 except:
     print("New lsit for dumping")
     accounts = []
     with open("accounts", "wb")as accountsList:
         pickle.dump(accounts, accountsList)
+ 
+
+try:
+    with open("captions", "rb")as captionsList:
+       captions = pickle.load(captionsList)
+    print("old caption List")
+except:
+    print("New Captions List")
+    captions = []
+    with open("captions", "wb")as captionsList:
+        pickle.dump(captions, captionsList)
+
+
+    
 
 #this is for testing sake
 #length = len(accounts)
