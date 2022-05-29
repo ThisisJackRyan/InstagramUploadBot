@@ -8,7 +8,7 @@ from InstagramMain import *
 
 
 root = Tk()
-root.geometry("500x400")
+#root.geometry("500x400")
 
 def test():
     print("whoo")
@@ -103,19 +103,14 @@ def thisAccount(value):
     password.grid(row=3,column=2)
     passwordText = Label(root, text = "Password:")
     passwordText.grid(row=3,column=1,sticky="se")
-    edit = Button(root, text="edit", command=lambda: editInfo(name, email, password, value))
+    edit = Button(root, text="edit", command=lambda: editInfo(name, email, password,caption, value))
     edit.grid(row=5,column=1)
     post = Button(root, text="Post", command=lambda: postPic(value))
     post.grid(row=6, column=1)
     caption = Label(root, text=getCaption(value))
     caption.grid(row=4, column=2, sticky ="w")
     captionText =Label(root, text ="Caption:")
-    captionText.grid(row=4, column=1)
-
-def setCaption(captions):
-    tempC = captions.get("1.0","end-1c")
-    print(tempC)
-
+    captionText.grid(row=4, column=1, sticky="w")
 
 
 def postPic(value):
@@ -124,23 +119,18 @@ def postPic(value):
     email = getEmail(value)
     password = getPassword(value)
     root.destroy()
-    bot(name, email,password)
+    accountCaption = captions[value]
+    bot(email,password, accountCaption )
 
 
-
-#removes account from list and calls to update pickle
-def removeAccount(value):
-    print(value)
-    accounts.pop(value)
-    #captions.pop(value)
-    updatePickle()
 
 
 #looks for change in name -- needs to be fixed with thisAccount() function
-def editInfo(n,e,p, value):
+def editInfo(n,e,p, c, value):
     n.destroy()
     e.destroy()
     p.destroy()
+    c.destroy()
     name = accounts[value]
 
     editName = Entry(root, width=40)
@@ -155,18 +145,35 @@ def editInfo(n,e,p, value):
     editPassword.grid(row=3, column=2)
     editPassword.insert(0, getPassword(value))
 
-    update = Button(root,text="Update", command=lambda: updatePasswords(value, editName, editEmail, editPassword))
+    editCaption = Text(root, width =30, height= 10)
+    editCaption.grid(row=4, column=2, sticky ="w")
+    editCaption.insert(INSERT, getCaption(value))
+
+    update = Button(root,text="Update", command=lambda: updatePasswords(value, editName, editEmail, editPassword, editCaption))
     update.grid(row=5, column=1)
     removeButton = Button(root, text="Remove", command= lambda: removeAccount(value))
     removeButton.grid(row=6, column=1)
 
-def updatePasswords(value, n,e,p):
+    
+#removes account from list and calls to update pickle
+def removeAccount(value):
+    print(value)
+    accounts.pop(value)
+    captions.pop(value)
+    updatePickle()
+
+
+def updatePasswords(value, n,e,p,c):
     tempN = n.get()
     tempE = e.get()
     tempP = p.get()
+    tempC = c.get("1.0","end-1c")
+
     oldN = accounts[value]
+    oldC = captions[value]
     oldE = getEmail(value)
     oldP = getPassword(value)
+
 
     if oldN != tempN:
         accounts[value] = tempN
@@ -184,10 +191,14 @@ def updatePasswords(value, n,e,p):
     if oldP != tempP:
         keyring.delete_password(oldN, "password")
         keyring.set_password(oldN, "password", tempP)
+    if oldC != tempC:
+        captions[value] = tempC
     updatePickle()
 
 #updates the pickled list
 def updatePickle():
+    print(captions)
+    print("dumping")
     with open("accounts", "wb")as accountsList:
         pickle.dump(accounts, accountsList)
     with open("captions", "wb")as captionsList:

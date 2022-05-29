@@ -9,14 +9,15 @@ chromedriverPath = "C:\Program Files (x86)\chromedriver.exe" #for Windows
 #chromedriverPath = "/Users/jackcryan/Downloads/chromeDrivers/chromedriver" #For Mac
 
 
-def bot(pickCaption,loginEmail,loginPassword):
+def bot(loginEmail,loginPassword, accountCaption):
     #loginEmail= mainPage.userEmail
     #loginPassword = mainPage.userPassword
     #pickCaption = mainPage.account
 
     print(loginEmail)
     print(loginPassword)
-    print(pickCaption)
+    print(accountCaption)
+ 
 
 
     driver = webdriver.Chrome(chromedriverPath)
@@ -67,44 +68,13 @@ def bot(pickCaption,loginEmail,loginPassword):
         caption()
 
     def caption():
-        if pickCaption == 'm':
-            time.sleep(3)
-            midwestCaption()
-        elif pickCaption == "v":
-            time.sleep(3)
-            vanCaption()
-        else:
-            print(" Please only type m or v ")
-            time.sleep(3)
-            caption()
-
-    def midwestCaption():
-        midwestCaption = driver.find_element_by_xpath("/html/body/div[6]/div[2]/div/div/div/div[2]/div[2]/div/div/div/div[2]/div[1]/textarea")
-        midwestCaption.send_keys("Follow For More!!!")
-        i = 0
-        while i < 10:
-            midwestCaption.send_keys(Keys.RETURN)
-            midwestCaption.send_keys(".")
-            i += 1
-
-        midwestCaption.send_keys(Keys.RETURN)
-        midwestCaption.send_keys("#midwest #midwestlife #midwestisthebest #camping #campinglife #campinglove #campinglife⛺️ #camp #hiking #hikingadventures #fishing #fish #fishinglife #northdakota #southdakota #minnesota #wisconsin #michigan #ohio #indiana #iowa #nebraska #kansas #missouri ")
-        share()
-
-    def vanCaption():
-        vanCaption = driver.find_element_by_xpath("/html/body/div[6]/div[2]/div/div/div/div[2]/div[2]/div/div/div/div[2]/div[1]/textarea")
-        vanCaption.send_keys("Follow For More!!!")
-        i = 0
-        while i < 10:
-            vanCaption.send_keys(Keys.RETURN)
-            vanCaption.send_keys(".")
-            i += 1
-            
-        vanCaption.send_keys(Keys.RETURN)
-        vanCaption.send_keys("#vanlife #fishing #camping #campinglife #campingtrip #campinggear #campinglife⛺️ #campinglove #camp #hiking #hikingadventures #suzuki #vwbus #volkswagen #van #buslife #buslifeadventure #busliving #campervan #campervanlife ")
+        time.sleep(3)
+        captionLocation = driver.find_element_by_xpath("/html/body/div[6]/div[2]/div/div/div/div[2]/div[2]/div/div/div/div[2]/div[1]/textarea")
+        captionLocation.send_keys(accountCaption)
         share()
 
     def share():
+        print("test share")
         time.sleep(3)
         sharebutton = driver.find_element_by_xpath("/html/body/div[6]/div[2]/div/div/div/div[1]/div/div/div[3]/div/button")
         sharebutton.click()
