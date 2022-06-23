@@ -1,5 +1,6 @@
 import keyring
 from tkinter import *
+from login import main
 
 root =Tk()
 root.geometry("300x300")
@@ -44,7 +45,7 @@ def createMainAccount(l,c,b):
         print("username: " + tempU)
         print("password: " + tempP)
         root.destroy()
-        import login
+        main()
 
 
 startUp()

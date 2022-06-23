@@ -1,6 +1,6 @@
 import keyring
 from tkinter import *
-import pickle
+from mainPage import mainInterface
 
 
 
@@ -62,6 +62,7 @@ def check(n,u,p):
     if username == tempU:
         if password == tempP:
             root.destroy()
-            import mainPage
+            mainInterface(tempN)
+            
 main()
 root.mainloop()

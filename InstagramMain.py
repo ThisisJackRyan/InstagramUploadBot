@@ -1,6 +1,5 @@
 import os
-import time
-import keyring #work on this 
+import time 
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
@@ -10,9 +9,6 @@ chromedriverPath = "C:\Program Files (x86)\chromedriver.exe" #for Windows
 
 
 def bot(loginEmail,loginPassword, accountCaption):
-    #loginEmail= mainPage.userEmail
-    #loginPassword = mainPage.userPassword
-    #pickCaption = mainPage.account
 
     print(loginEmail)
     print(loginPassword)
@@ -74,7 +70,6 @@ def bot(loginEmail,loginPassword, accountCaption):
         share()
 
     def share():
-        print("test share")
         time.sleep(3)
         sharebutton = driver.find_element_by_xpath("/html/body/div[6]/div[2]/div/div/div/div[1]/div/div/div[3]/div/button")
         sharebutton.click()
