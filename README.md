@@ -3,8 +3,7 @@ This Program is written in python and uploads picture to instagram. As of now my
 
 The majority of my Code is in login and mainPage using Tkinter I have created a basic Login system and UI to manage several Instagram accounts.
 This is what the mainPage UI looks like
-![Screenshot(95)](https://user-images.githubusercontent.com/104151631/207205743-faa2cf37-c43b-44ea-8cc9-b56bcf6afb67.png)
-
+![Screenshot(95)](https://user-images.githubusercontent.com/104151631/207208621-42d7c1a3-fd98-4a83-aa93-937e010ab441.png)
 
 Clicking Post button in the corner will run the Instagram Bot File and upload until all the images in a deticated folder have been posted. 
 
