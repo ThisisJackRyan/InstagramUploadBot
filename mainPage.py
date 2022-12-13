@@ -20,14 +20,17 @@ def mainInterface(nameOfUser):
         print(e)
         print(p)
         
+    #returns Email of specific account
     def getEmail(value):
         name = accounts[value]
         return keyring.get_password(name, "email")
 
+    #returns password of specific account
     def getPassword(value):
         name = accounts[value]
         return keyring.get_password(name, "password")
 
+    #returns caption of specific account
     def getCaption(value):
         return captions[value]
 
@@ -44,7 +47,7 @@ def mainInterface(nameOfUser):
         addAccount = Button(root, text="Add Account", width=15, command=lambda: newAccount())
         addAccount.grid(row=num+1,column=0)
     
-    #entries for a new account
+    #entries for a Instagram account
     def newAccount():
         name = Entry(root, width = 40 )
         name.grid(row=1,column=2)
@@ -108,13 +111,9 @@ def mainInterface(nameOfUser):
         captionText =Label(root, text ="Caption:")
         captionText.grid(row=4, column=1, sticky="w")
 
-
+    #runs Insta Bot
     def postPic(value):
-        email = getEmail(value)
-        password = getPassword(value)
-        root.destroy()
-        accountCaption = captions[value]
-        bot(email,password, accountCaption )
+        bot(getEmail(value), getPassword(value), captions[value] )
 
 
 

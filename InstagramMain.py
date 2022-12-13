@@ -2,11 +2,16 @@ import os
 import time 
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
 
 
 chromedriverPath = "C:\Program Files (x86)\chromedriver.exe" #for Windows
+# for Chrome version Version 108.0.5359.99 (Official Build) (64-bit)
+
 #chromedriverPath = "/Users/jackcryan/Downloads/chromeDrivers/chromedriver" #For Mac
 
+
+#lots of sleep for page to load. Somtimes has issuse on bad wifi
 
 def bot(loginEmail,loginPassword, accountCaption):
 
@@ -20,8 +25,9 @@ def bot(loginEmail,loginPassword, accountCaption):
     driver.get("https://www.instagram.com/")
 
     def login(email, password):
-        instaEmail = driver.find_element_by_xpath('/html/body/div[1]/section/main/article/div[2]/div[1]/div[2]/form/div/div[1]/div/label/input')
-        instapassword = driver.find_element_by_xpath('/html/body/div[1]/section/main/article/div[2]/div[1]/div[2]/form/div/div[2]/div/label/input')
+        time.sleep(5)
+        instaEmail = driver.find_element(By.XPATH, "/html/body/div[2]/div/div/div/div[1]/div/div/div/div[1]/section/main/article/div[2]/div[1]/div[2]/form/div/div[1]/div/label/input")
+        instapassword = driver.find_element(By.XPATH, '/html/body/div[2]/div/div/div/div[1]/div/div/div/div[1]/section/main/article/div[2]/div[1]/div[2]/form/div/div[2]/div/label/input')
         time.sleep(2)
         instaEmail.send_keys(email)
         time.sleep(2)
@@ -33,7 +39,7 @@ def bot(loginEmail,loginPassword, accountCaption):
 
     def postButton():
         time.sleep(5)
-        postButton = driver.find_element_by_xpath('/html/body/div[1]/section/nav/div[2]/div/div/div[3]/div/div[3]/div/button')
+        postButton = driver.find_element(By.XPATH,'/html/body/div[2]/div/div/div/div[1]/div/div/div/div[1]/div[1]/div[1]/div/div/div/div/div[2]/div[6]/div/div/a')
         postButton.click()
 
     def selectImage():
@@ -50,37 +56,38 @@ def bot(loginEmail,loginPassword, accountCaption):
 
 
     def uploadImage(num, imagePath):
-        inputImage = driver.find_element_by_xpath("/html/body/div[8]/div[2]/div/div/div/div[2]/div[1]/form/input")
-        inputImage.send_keys("C:\\Users\\Jack Ryan\\Desktop\\Coding\\Python\\InstagramUploadBot\\Uploadpictures" + imagePath[num] )
-        next()
-
-    def next():
+        #location of Image and where to upload
         time.sleep(2)
-        firstNext = driver.find_element_by_xpath("/html/body/div[6]/div[2]/div/div/div/div[1]/div/div/div[3]/div/button")
+        inputImage = driver.find_element(By.XPATH, "/html/body/div[2]/div/div/div/div[2]/div/div/div[1]/div/div[3]/div/div/div/div/div[2]/div/div/div/div[2]/div[1]/form/input")
+        inputImage.send_keys("C:\\Users\\Jack Ryan\\Desktop\\Coding\\Python\\InstagramUploadBot\\Uploadpictures" + imagePath[num] )
+
+        time.sleep(2)
+
+        #click the next button twice
+        firstNext = driver.find_element(By.XPATH,"/html/body/div[2]/div/div/div/div[2]/div/div/div[1]/div/div[3]/div/div/div/div/div[2]/div/div/div/div[1]/div/div/div[3]/div/button")
         firstNext.click()
         time.sleep(2)
-        secondNext = driver.find_element_by_xpath('/html/body/div[6]/div[2]/div/div/div/div[1]/div/div/div[3]/div/button')
+        secondNext = driver.find_element(By.XPATH,'/html/body/div[2]/div/div/div/div[2]/div/div/div[1]/div/div[3]/div/div/div/div/div[2]/div/div/div/div[1]/div/div/div[3]/div/button')
         secondNext.click()
-        caption()
 
-    def caption():
         time.sleep(3)
-        captionLocation = driver.find_element_by_xpath("/html/body/div[6]/div[2]/div/div/div/div[2]/div[2]/div/div/div/div[2]/div[1]/textarea")
+
+        #putting pickled caption into text box
+        captionLocation = driver.find_element(By.XPATH,"/html/body/div[2]/div/div/div/div[2]/div/div/div[1]/div/div[3]/div/div/div/div/div[2]/div/div/div/div[2]/div[2]/div/div/div/div[2]/div[1]/textarea")
         captionLocation.send_keys(accountCaption)
-        share()
-
-    def share():
+        
         time.sleep(3)
-        sharebutton = driver.find_element_by_xpath("/html/body/div[6]/div[2]/div/div/div/div[1]/div/div/div[3]/div/button")
-        sharebutton.click()
-        time.sleep(15)
-        exit = driver.find_element_by_xpath("/html/body/div[6]/div[1]/button")
-        exit.click()
-        time.sleep(15)
-        return
-        
 
-        
+        #Share the IMAGE!!!
+        sharebutton = driver.find_element(By.XPATH,"/html/body/div[2]/div/div/div/div[2]/div/div/div[1]/div/div[3]/div/div/div/div/div[2]/div/div/div/div[1]/div/div/div[3]/div/button")
+        sharebutton.click()
+        time.sleep(30)
+
+        #exit and restart head back to for each loop
+        exit = driver.find_element(By.XPATH,"/html/body/div[2]/div/div/div/div[2]/div/div/div[1]/div/div[2]/div")
+        exit.click()
+        time.sleep(30)
+        return
+
     time.sleep(3)
     login(loginEmail, loginPassword)
-print("intresting")

@@ -2,6 +2,12 @@ import keyring
 from tkinter import *
 from login import main
 
+
+
+
+#this page is strickly for if this is your first time using it. Makes you create a login 
+
+
 root =Tk()
 root.geometry("300x300")
 
