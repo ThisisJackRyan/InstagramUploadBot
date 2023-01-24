@@ -14,7 +14,7 @@ Clicking Post button in the corner will run the Instagram Bot script and upload 
   
   ### My Accounts 
  
-    Van Camping: https://www.instagram.com/van.campin/?next=%2F 
+ Van Camping: https://www.instagram.com/van.campin/?next=%2F 
  
     Midwest Camping: https://www.instagram.com/midwest.campin/?next=%2F 
 
