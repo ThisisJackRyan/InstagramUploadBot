@@ -9,13 +9,14 @@ Clicking Post button in the corner will run the Instagram Bot script and upload 
 
 
 ### Future Plans
-  My plan with this is to add more sites to post on. I also want to incorporate machine learning so that a webscrapper will take an image and decide if it is visually pleasing enough to post. I have started this process with the Repository github.com/ThisisJackRyan/WebScrapper4DataSets. That has a working web scrapper and a script to turn the images pixels into RGBA values or create a data sets.
+
+My plan with this is to add more sites to post on. I also want to incorporate machine learning so that a webscrapper will take an image and decide if it is visually pleasing enough to post. I have started this process with the Repository github.com/ThisisJackRyan/WebScrapper4DataSets. That has a working web scrapper and a script to turn the images pixels into RGBA values or create a data sets.
   
   
   ### My Accounts 
  
  Van Camping: https://www.instagram.com/van.campin/?next=%2F 
  
-    Midwest Camping: https://www.instagram.com/midwest.campin/?next=%2F 
+ Midwest Camping: https://www.instagram.com/midwest.campin/?next=%2F 
 
 
