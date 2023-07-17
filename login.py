@@ -5,6 +5,7 @@ from mainPage import mainInterface
 
 
 #LOgin Stuf!!!!!!!!!!!!!!!!!!!!!!!
+#to the UI I Made
 #name: Jack
 #UserName; ThisisJackRyan
 #Password: nODDOG1021
@@ -78,6 +79,5 @@ def check(n,u,p):
         if password == tempP:
             root.destroy()
             mainInterface(tempN)
-            
 main()
 root.mainloop() 
