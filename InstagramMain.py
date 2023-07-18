@@ -5,10 +5,8 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 
 
-chromedriverPath = "C:\Program Files (x86)\chromedriver.exe" #for Windows
-# for Chrome version Version 108.0.5359.99 (Official Build) (64-bit)
+chromedriverPath = "C:\Program Files (x86)\chromedriver.exe" 
 
-#chromedriverPath = "/Users/jackcryan/Downloads/chromeDrivers/chromedriver" #For Mac
 
 
 #lots of sleep for page to load. Sometimes has issues on bad wifi
