@@ -11,7 +11,7 @@ chromedriverPath = "C:\Program Files (x86)\chromedriver.exe" #for Windows
 #chromedriverPath = "/Users/jackcryan/Downloads/chromeDrivers/chromedriver" #For Mac
 
 
-#lots of sleep for page to load. Somtimes has issuse on bad wifi
+#lots of sleep for page to load. Sometimes has issues on bad wifi
 
 def bot(loginEmail,loginPassword, accountCaption):
 
