@@ -8,19 +8,18 @@ from selenium.common.exceptions import TimeoutException
 
 chromeDriverPath = "C:\Program Files (x86)\chromedriver.exe"
 
-loginEmail = input("What is your Email?")
-loginPassword =  input("What is your password")
-accountCaption = input("give me your caption")
+loginEmail = input("What is your Email? ")
+loginPassword =  input("What is your password? ")
+accountCaption = input("give me your caption? ")
 
 
 
 
 
 
-def findIt(id):
+def findItXPATH(id):
     try:
-        name = "ID"
-        WebDriverWait(driver, timeout=10).until(lambda d: d.find_element(By.ID, id))
+        WebDriverWait(driver, timeout=10).until(lambda d: d.find_element(By.XPATH, id))
         print("Found it!")
         print()
     except:
@@ -38,7 +37,8 @@ except:
     print("--ERROR--")
     print("Out Dated Driver or No Wifi connection")
 
-findIt("loginForm")
+#findIt("loginForm")
+findItXPATH("/html/body/div[2]/div/div/div[2]/div/div/div/div[1]/section/main/article/div[2]/div[1]/div[2]/form/div/div[1]/div/label/input")
 
 #Logging in to the Account
 instagramEmail = driver.find_element(By.NAME, "username")
@@ -50,7 +50,7 @@ instagramPassword.send_keys(Keys.RETURN)
 
 
 #click the post icon
-findIt("ssrb_root_start") #instagram has doesn't have any Id's that get add on new page. May have to rethink findIT()? 
+findItXPATH("/html/body/div[2]/div/div/div[2]/div/div/div/div[1]/div[1]/div[1]/div/div/div/div/div[2]/div[7]/div/span/div/a") #instagram has doesn't have any Id's that get add on new page. May have to rethink findIT()? 
 postButton = driver.find_element(By.XPATH,'/html/body/div[2]/div/div/div[2]/div/div/div/div[1]/div[1]/div[1]/div/div/div/div/div[2]/div[7]/div/span/div/a')
 postButton.click()
 
