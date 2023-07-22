@@ -94,6 +94,14 @@ def postImages(pic):
     captionLocation = driver.find_element(By.XPATH,"/html/body/div[2]/div/div/div[3]/div/div/div[1]/div/div[3]/div/div/div/div/div[2]/div/div/div/div[2]/div[2]/div/div/div/div[2]/div[1]/div[1]")
     captionLocation.send_keys(accountCaption)
 
+    #Share the IMAGE!!!
+    shareButton = driver.find_element(By.XPATH,"/html/body/div[2]/div/div/div[3]/div/div/div[1]/div/div[3]/div/div/div/div/div[2]/div/div/div/div[1]/div/div/div[3]/div/div")
+    shareButton.click()
+
+    findItXPATH("/html/body/div[2]/div/div/div[3]/div/div/div[1]/div/div[2]/div")
+    exit = driver.find_element(By.XPATH,"/html/body/div[2]/div/div/div[3]/div/div/div[1]/div/div[2]/div")
+    exit.click()
+
 
 imagePath = []
 pathToPictures = os.listdir("uploadpictures")
