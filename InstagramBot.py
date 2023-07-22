@@ -1,3 +1,4 @@
+import os
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
@@ -10,7 +11,23 @@ chromeDriverPath = "C:\Program Files (x86)\chromedriver.exe"
 
 loginEmail = input("What is your Email? ")
 loginPassword =  input("What is your password? ")
-accountCaption = input("give me your caption? ")
+#accountCaption = input("give me your caption? ")
+accountCaption = '''
+Follow For More!!!
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+#vanlife #fishing #camping #campinglife #campingtrip #campinggear #campinglife⛺️ 
+#campinglove #camp #hiking #hikingadventures #suzuki #vwbus #volkswagen #van 
+#buslife #buslifeadventure #busliving #campervan #campervanlife 
+'''
 
 
 
@@ -49,10 +66,42 @@ instagramPassword.send_keys(loginPassword)
 instagramPassword.send_keys(Keys.RETURN)
 
 
-#click the post icon
-findItXPATH("/html/body/div[2]/div/div/div[2]/div/div/div/div[1]/div[1]/div[1]/div/div/div/div/div[2]/div[7]/div/span/div/a") #instagram has doesn't have any Id's that get add on new page. May have to rethink findIT()? 
-postButton = driver.find_element(By.XPATH,'/html/body/div[2]/div/div/div[2]/div/div/div/div[1]/div[1]/div[1]/div/div/div/div/div[2]/div[7]/div/span/div/a')
-postButton.click()
+
+def postImages(pic):
+
+
+    #click the post icon
+    findItXPATH("/html/body/div[2]/div/div/div[2]/div/div/div/div[1]/div[1]/div[1]/div/div/div/div/div[2]/div[7]/div/span/div/a") #instagram has doesn't have any Id's that get add on new page. May have to rethink findIT()? 
+    postButton = driver.find_element(By.XPATH,'/html/body/div[2]/div/div/div[2]/div/div/div/div[1]/div[1]/div[1]/div/div/div/div/div[2]/div[7]/div/span/div/a')
+    postButton.click()
+
+    extraSlash = "\\"
+    print(extraSlash + pic)
+    imagePath.append(extraSlash + pic)
+    findItXPATH("/html/body/div[2]/div/div/div[3]/div/div/div[1]/div/div[3]/div/div/div/div/div[2]/div/div/div/div[2]/div[1]/form/input")
+    inputImage = driver.find_element(By.XPATH, "/html/body/div[2]/div/div/div[3]/div/div/div[1]/div/div[3]/div/div/div/div/div[2]/div/div/div/div[2]/div[1]/form/input")
+    inputImage.send_keys("C:\\Users\\Jack Ryan\\Desktop\\Coding\\Python\\InstagramUploadBot\\Uploadpictures" + imagePath[num] )
+
+    #Click the next button twice
+    firstNext = driver.find_element(By.XPATH,"/html/body/div[2]/div/div/div[3]/div/div/div[1]/div/div[3]/div/div/div/div/div[2]/div/div/div/div[1]/div/div/div[3]/div/div")
+    firstNext.click()
+    findItXPATH("/html/body/div[2]/div/div/div[3]/div/div/div[1]/div/div[3]/div/div/div/div/div[2]/div/div/div/div[1]/div/div/div[3]/div/div")
+    secondNext = driver.find_element(By.XPATH,'/html/body/div[2]/div/div/div[3]/div/div/div[1]/div/div[3]/div/div/div/div/div[2]/div/div/div/div[1]/div/div/div[3]/div/div')
+    secondNext.click()
+
+    #putting caption into text box
+    findItXPATH("/html/body/div[2]/div/div/div[3]/div/div/div[1]/div/div[3]/div/div/div/div/div[2]/div/div/div/div[2]/div[2]/div/div/div/div[2]/div[1]/div[1]")
+    captionLocation = driver.find_element(By.XPATH,"/html/body/div[2]/div/div/div[3]/div/div/div[1]/div/div[3]/div/div/div/div/div[2]/div/div/div/div[2]/div[2]/div/div/div/div[2]/div[1]/div[1]")
+    captionLocation.send_keys(accountCaption)
+
+
+imagePath = []
+pathToPictures = os.listdir("uploadpictures")
+num = 0
+for pic in pathToPictures:
+        postImages(pic)
+        num+=1
+
 
 
 
