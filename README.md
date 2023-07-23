@@ -21,8 +21,8 @@ My plan with this is to add more sites to post on. I also want to incorporate ma
 
 
  # Progress
-The Version 1 Tag branch is my working but old version! I am in the process of making a more efficient and better bot right now. This is located in the file InstagramBot.py
+The Version 1 Tag branch is my working but old version! I am in the process of making a more efficient and better bot right now. This is located in the file InstagramBot.py in the testing branch.
 
-This was one of my first coding projects, if you look at the first tag you can tell! The InstagramBot.py is a much better representation of my current skill level. 
+This was one of my first coding projects, if you look at the first tag you can tell! The InstagramBot.py and testing branch is a much better representation of my current skill level. 
 
 
