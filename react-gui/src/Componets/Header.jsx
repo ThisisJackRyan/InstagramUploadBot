@@ -6,9 +6,9 @@ const Header = () => {
         <div className="header">
             <div className="headerTitle">Bot Central</div>
             <div className="nav">
-                <div>Bots</div>
-                <div>Account</div>
-                <div>Setting</div>
+                <div><span>Bots</span></div>
+                <div><span>Account</span></div>
+                <div><span>Setting</span></div>
             </div>
         </div>
     )
