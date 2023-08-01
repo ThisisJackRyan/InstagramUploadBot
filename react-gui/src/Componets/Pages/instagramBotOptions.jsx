@@ -2,21 +2,37 @@
 //first chuck is mutiple choice 
 //Second chunk 
 
-const instagramBotOptions = () => {
+const InstagramBotOptions = () => {
     return(
-        <div>
-            <div>
-                <div>What format do you want</div>
-                <div>
-                    <div>Video?</div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
+        <div className="options">
+            <div className="optionsForm">
+                <div className="flex center Question"><span>What format do you want</span></div>
+                <div id="typeOfPost" className="flex center">
+                    <div className="choice flex center">
+                        <span>Single Picture Post</span>
+                        <label className="switch">
+                            <input id="SinglePicture" type="checkbox" />
+                            <span className="slider round"></span>
+                        </label>
+                    </div>
+                    <div className="choice">
+                        <span>Reel or Video</span>
+                        <label className="switch">
+                            <input id="SinglePicture" type="checkbox" />
+                            <span className="slider round"></span>
+                        </label>
+                    </div>
+                    <div className="choice">
+                        <span>Carousel</span>
+                        <label className="switch">
+                            <input id="SinglePicture" type="checkbox" />
+                            <span className="slider round"></span>
+                        </label>
+                    </div>
                 </div>
             </div>
         </div>
     )
 }
 
-export default instagramBotOptions
+export default InstagramBotOptions;
