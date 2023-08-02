@@ -107,20 +107,26 @@
 
 
 /* == InstagramBotOptions == */
+.options{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.optionsForm{
+  color: white;
+  background-color: #115287;
+  padding: 2rem 13.25rem;
+  border-radius: 15px;
+  max-width: 47rem;
+}
 .Question span{
   border-bottom: solid white 2px ;
   margin-bottom: 1em;
   font-size: 1.3em;
 }
-.optionsForm{
-  color: white;
-  background-color: #115287;
-  margin:15rem 25rem; 
-  padding: 2rem 3rem;
-  border-radius: 15px;
-}
-#typeOfPost{
-  gap: 2em;
+.answerOptions{
+  gap: 4em;
+  margin-bottom:2em ;
 }
 .choice{
   display: flex;
