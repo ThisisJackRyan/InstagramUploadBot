@@ -2,7 +2,11 @@
 //first chuck is multiple choice 
 //Second chunk 
 
+import UploadImage from "../UploadImage";
+
 const InstagramBotOptions = () => {
+    const img = [];
+
     return(
         <div className="options">
             <div className="optionsForm">
@@ -60,6 +64,10 @@ const InstagramBotOptions = () => {
                             <span className="slider round"></span>
                         </label>
                     </div>
+                </div>
+                <div className="flex center Question"><span>Choose your Media</span></div>
+                <div>
+                    <UploadImage />
                 </div>
             </div>
         </div>

@@ -132,12 +132,6 @@
   display: flex;
   flex-direction: column;
 }
-.choice span:focus{
-  background-color: greenyellow;
-}
-/*.choice:first-child:hover{
-  background-color: red;
-}*/
 
 /*switch stuff*/
 .switch {
