@@ -192,3 +192,16 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
+/*UploadImage*/
+.imagePreview{
+  margin-top: 0.5em;
+  max-width: 93.8px;
+}
+
+.removeImageClass{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3em ;
+}

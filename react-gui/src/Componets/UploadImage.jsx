@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 
 
 const UploadImage = () => {
-
+    const [imageName, setImageName] = useState([]);
     const [images, setImages] = useState([]);
     const [imageURLs, setImageURLs] = useState([]);
     
@@ -19,15 +19,24 @@ const UploadImage = () => {
     }, [images]);
 
     const onImageChange = (e) => {
-        console.log("images: " + images);
-        console.log("imageURLs: " +imageURLs)
+        /*
+        var files = event.target.files;
+        var fileName = files[0].name;*/
+        count = 0;
+        console.log(e.target.files[0].name);
+        setImageName([e.target.files[0].name])
         setImages([...e.target.files]);
     }
-
+    let count = 0;
     return (
         <div>
             <input type="file" multiple accept="image/*" onChange={onImageChange} />
-            { imageURLs.map(imageSrc => <img src={imageSrc} />)}
+            { imageURLs.map(imageSrc  => 
+            <div className="flex">
+                <img className="imagePreview" src={imageSrc} />
+                <div className="removeImageClass">{imageName[count++]}</div>
+            </div>
+                )}
         </div>
     )
 }
