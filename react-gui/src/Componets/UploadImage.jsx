@@ -10,6 +10,8 @@ const UploadImage = () => {
     const [imageName, setImageName] = useState([]);
     const [images, setImages] = useState([]);
     const [imageURLs, setImageURLs] = useState([]);
+
+    const [isVisible, setIsVisible] = useState(true);
     
     useEffect(() => {
         if (images.length < 1) return;
@@ -18,24 +20,27 @@ const UploadImage = () => {
         setImageURLs(newImageUrls);
     }, [images]);
 
-    const onImageChange = (e) => {
-        /*
-        var files = event.target.files;
-        var fileName = files[0].name;*/
+    function onImageChange(e){
         count = 0;
-        console.log(e.target.files[0].name);
-        setImageName([e.target.files[0].name])
+        setImageName([e.target.files[0].name]);
         setImages([...e.target.files]);
     }
+
     let count = 0;
     return (
         <div>
             <input type="file" multiple accept="image/*" onChange={onImageChange} />
-            { imageURLs.map(imageSrc  => 
-            <div className="flex">
-                <img className="imagePreview" src={imageSrc} />
-                <div className="removeImageClass">{imageName[count++]}</div>
+            { imageURLs.map(function(imageSrc, id){
+                return(
+                <div className="flex">
+                    <img className="imagePreview" src={imageSrc} alt="" />
+                    <div className="imageNameClass">{imageName[count]}</div>
+                    <div>{id}</div>
+                    <div className="removeImageClass"><span>X</span></div>
             </div>
+                );
+            } 
+            
                 )}
         </div>
     )

@@ -199,9 +199,26 @@ input:checked + .slider:before {
   max-width: 93.8px;
 }
 
-.removeImageClass{
+.imageNameClass{
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 3em ;
+}
+.removeImageClass{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.removeImageClass span{
+  padding: 0.25rem 0.739rem;
+  color:red;
+  font-size: 2em;
+  font-weight: bold;
+  border-radius:50%;
+  aspect-ratio: 1/1;
+}
+.removeImageClass span:hover{
+  background-color: red;
+  color:white
 }
