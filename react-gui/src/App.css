@@ -220,5 +220,6 @@ input:checked + .slider:before {
 }
 .removeImageClass span:hover{
   background-color: red;
-  color:white
+  color:white;
+  cursor: pointer;
 }
