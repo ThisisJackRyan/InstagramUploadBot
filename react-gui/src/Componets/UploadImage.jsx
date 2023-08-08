@@ -36,7 +36,27 @@ const UploadImage = () => {
 
     return (
         <div>
-            <input type="file" multiple accept="image/*" onChange={onImageChange} />
+            <div>
+            <label htmlFor="fileInput"className="inputButton" style={{ cursor: 'pointer' }}>
+                Add Files
+            </label>
+            <input
+                type="file"
+                id="fileInput"
+                multiple
+                accept="image/*, video/*"
+                onChange={onImageChange}
+                style={{
+                display:"none"
+                }}/>
+            </div>
+
+
+
+
+
+
+
             { imageURLs.map(function(imageSrc, index){
                 return(
                 <div className="flex">

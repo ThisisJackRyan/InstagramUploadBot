@@ -194,6 +194,17 @@ input:checked + .slider:before {
 }
 
 /*UploadImage*/
+.inputButton{
+  background-color: lightblue;
+  color:black;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  border:solid gray 1px;
+  border-radius:5px ;
+}
+.inputButton:hover{
+  background-color: rgb(150, 187, 200);
+}
 .imagePreview{
   margin-top: 0.5em;
   max-width: 93.8px;
