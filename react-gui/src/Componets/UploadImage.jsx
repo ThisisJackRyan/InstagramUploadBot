@@ -22,6 +22,17 @@ const UploadImage = () => {
     function onImageChange(e){
         setImages([...e.target.files]);
     }
+    function ShortenString(ImageName){
+        let maxLength = 20;
+        console.log(ImageName.length);
+        if(ImageName.length <= maxLength+3){
+            return ImageName;
+        }
+        
+        let NewName = ImageName.substring(0,maxLength-3) + "...";
+        let type = ImageName.substring(ImageName.length-3,ImageName.length);
+        return NewName + type;      
+    }
 
     return (
         <div>
@@ -31,13 +42,10 @@ const UploadImage = () => {
                 <div className="flex">
                     {console.log()}
                     <img className="imagePreview" src={imageSrc} alt="" />
-                    <div className="imageNameClass">{images[index].name}</div>
+                    <div className="imageNameClass">{ShortenString(images[index].name)}</div>
                     <div className="removeImageClass"><span>X</span></div>
-            </div>
-                );
-            } 
-            
-                )}
+                </div>);
+                } )}
         </div>
     )
 }
