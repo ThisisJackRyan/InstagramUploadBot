@@ -9,8 +9,6 @@ import { useEffect, useState } from "react";
 const UploadImage = () => {
     const [images, setImages] = useState([]);
     const [imageURLs, setImageURLs] = useState([]);
-
-    const [isVisible, setIsVisible] = useState(true);
     
     useEffect(() => {
         if (images.length < 1) return;
@@ -20,11 +18,16 @@ const UploadImage = () => {
     }, [images]);
 
     function onImageChange(e){
-        setImages([...e.target.files]);
+        if(images.length >= 1){
+            const newArray = [...images, ...e.target.files];
+            setImages(newArray);
+        }else{
+            setImages([...e.target.files]);
+        }
+        console.log(images);
     }
     function ShortenString(ImageName){
         let maxLength = 20;
-        console.log(ImageName.length);
         if(ImageName.length <= maxLength+3){
             return ImageName;
         }
@@ -43,20 +46,13 @@ const UploadImage = () => {
             <input
                 type="file"
                 id="fileInput"
-                multiple
+                
                 accept="image/*, video/*"
                 onChange={onImageChange}
                 style={{
                 display:"none"
                 }}/>
             </div>
-
-
-
-
-
-
-
             { imageURLs.map(function(imageSrc, index){
                 return(
                 <div className="flex">
