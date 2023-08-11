@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import videoPlaceHolder from "./Assets/placeholder.svg"
 
 
 
@@ -31,10 +32,12 @@ const UploadImage = () => {
         if(ImageName.length <= maxLength+3){
             return ImageName;
         }
-        
         let NewName = ImageName.substring(0,maxLength-3) + "...";
         let type = ImageName.substring(ImageName.length-3,ImageName.length);
         return NewName + type;      
+    }
+    const remove = (index) => {
+        console.log(index);
     }
 
     return (
@@ -56,10 +59,9 @@ const UploadImage = () => {
             { imageURLs.map(function(imageSrc, index){
                 return(
                 <div className="flex">
-                    {console.log()}
                     <img className="imagePreview" src={imageSrc} alt="" />
                     <div className="imageNameClass">{ShortenString(images[index].name)}</div>
-                    <div className="removeImageClass"><span>X</span></div>
+                    <div className="removeImageClass" ><span>X</span></div>
                 </div>);
                 } )}
         </div>
