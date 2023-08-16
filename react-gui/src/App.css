@@ -193,6 +193,27 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
+.runBotButton{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 4rem;
+}
+.runBotButton span{
+  background-color: rgb(184, 0, 0);
+  border: solid gray 1px;
+  font-size: 2em;
+  padding-left: 1rem;
+  padding-right:1rem;
+  border-radius: 5px;
+}
+.runBotButton span:hover{
+  background-color: darkred;
+  cursor: pointer;
+  color:lightgray;
+}
+
+
 /*UploadImage*/
 .inputButton{
   background-color: lightblue;

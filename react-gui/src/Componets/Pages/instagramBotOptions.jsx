@@ -1,11 +1,21 @@
-
-//first chuck is multiple choice 
-//Second chunk 
-
+import { useState } from "react";
 import UploadImage from "../UploadImage";
 
 const InstagramBotOptions = () => {
-    const img = [];
+    const [postType, setPostType] = useState(""); // State for post type selection
+    const [aspectRatio, setAspectRatio] = useState(""); // State for aspect ratio selection
+
+    function handlePostTypeChange(type) {
+        setPostType(type);
+    }
+
+    function handleAspectRatioChange(ratio) {
+        setAspectRatio(ratio);
+    }
+
+    function runBot(){
+
+    }
 
     return(
         <div className="options">
@@ -15,52 +25,92 @@ const InstagramBotOptions = () => {
                     <div className="choice flex center">
                         <span>Single Picture Post</span>
                         <label className="switch">
-                            <input id="SinglePicture" type="checkbox" />
+                            <input
+                                id="SinglePicture"
+                                type="checkbox"
+                                checked={postType === "SinglePicture"}
+                                onChange={() => handlePostTypeChange("SinglePicture")}
+                            />
                             <span className="slider round"></span>
                         </label>
                     </div>
                     <div className="choice flex center">
                         <span>Reel or Video</span>
                         <label className="switch">
-                            <input id="SinglePicture" type="checkbox" />
+                            <input
+                                    id="Video"
+                                    type="checkbox"
+                                    checked={postType === "Video"}
+                                    onChange={() => handlePostTypeChange("Video")}
+                                />
                             <span className="slider round"></span>
                         </label>
                     </div>
                     <div className="choice flex center">
                         <span>Carousel</span>
                         <label className="switch">
-                            <input id="SinglePicture" type="checkbox" />
+                            <input
+                                    id="Carousel"
+                                    type="checkbox"
+                                    checked={postType === "Carousel"}
+                                    onChange={() => handlePostTypeChange("Carousel")}
+                                />
                             <span className="slider round"></span>
                         </label>
                     </div>
                 </div>
+
+
+
+
+
                 <div  className="flex center Question"><span>What aspect ratio do you want?</span></div>
                 <div id="pictureRatio" className="flex center answerOptions">
                     <div className="choice flex center">
                         <span>Original Sizing</span>
                         <label className="switch">
-                            <input id="SinglePicture" type="checkbox" />
+                            <input
+                                    id="OriginalSizing"
+                                    type="checkbox"
+                                    checked={aspectRatio === "OriginalSizing"}
+                                    onChange={() => handleAspectRatioChange("OriginalSizing")}
+                                />
                             <span className="slider round"></span>
                         </label>
                     </div>
                     <div className="choice flex center">
                         <span>1:1</span>
                         <label className="switch">
-                            <input id="SinglePicture" type="checkbox" />
+                            <input
+                                    id="1:1"
+                                    type="checkbox"
+                                    checked={aspectRatio === "1:1"}
+                                    onChange={() => handleAspectRatioChange("1:1")}
+                                />
                             <span className="slider round"></span>
                         </label>
                     </div>
                     <div className="choice flex center">
                         <span>4:5</span>
                         <label className="switch">
-                            <input id="SinglePicture" type="checkbox" />
+                            <input
+                                    id="4:5"
+                                    type="checkbox"
+                                    checked={aspectRatio === "4:5"}
+                                    onChange={() => handleAspectRatioChange("4:5")}
+                                />
                             <span className="slider round"></span>
                         </label>
                     </div>
                     <div className="choice flex center">
                         <span>16:9</span>
                         <label className="switch">
-                            <input id="SinglePicture" type="checkbox" />
+                            <input
+                                    id="16:9"
+                                    type="checkbox"
+                                    checked={aspectRatio === "16:9"}
+                                    onChange={() => handleAspectRatioChange("16:9")}
+                                />
                             <span className="slider round"></span>
                         </label>
                     </div>
@@ -69,6 +119,7 @@ const InstagramBotOptions = () => {
                 <div>
                     <UploadImage />
                 </div>
+                <div onClick={() => runBot()} className="runBotButton btn"><span>Run Bot</span></div>
             </div>
         </div>
     )
