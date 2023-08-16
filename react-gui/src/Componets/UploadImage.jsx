@@ -27,6 +27,12 @@ const UploadImage = () => {
         }
         console.log(images);
     }
+    const remove = (index) => {
+        console.log(index);
+            const updatedImages = [...images];
+            updatedImages.splice(index, 1);
+            setImages(updatedImages);
+    }
     function ShortenString(ImageName){
         let maxLength = 20;
         if(ImageName.length <= maxLength+3){
@@ -36,9 +42,7 @@ const UploadImage = () => {
         let type = ImageName.substring(ImageName.length-3,ImageName.length);
         return NewName + type;      
     }
-    const remove = (index) => {
-        console.log(index);
-    }
+    
 
     return (
         <div>
@@ -57,11 +61,16 @@ const UploadImage = () => {
                 }}/>
             </div>
             { imageURLs.map(function(imageSrc, index){
+                const isImage = images[index].type.startsWith("image");
                 return(
                 <div className="flex">
+                {isImage ? (
                     <img className="imagePreview" src={imageSrc} alt="" />
+                ) : (
+                    <img className="imagePreview" src={videoPlaceHolder} alt="" />
+                )}
                     <div className="imageNameClass">{ShortenString(images[index].name)}</div>
-                    <div className="removeImageClass" ><span>X</span></div>
+                    <div onClick={() => remove(index)} className="removeImageClass" ><span>X</span></div>
                 </div>);
                 } )}
         </div>
