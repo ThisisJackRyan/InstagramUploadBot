@@ -33,7 +33,7 @@ const UploadImage = () => {
         setImages(updatedImages);
     }
     function ShortenString(ImageName){
-        let maxLength = 20;
+        let maxLength = 25;
         if(ImageName.length <= maxLength+3){
             return ImageName;
         }
@@ -62,7 +62,7 @@ const UploadImage = () => {
 
             
             { images.map((image, index) => (
-                <div className="flex" key={index}>
+                <div className=" imageContainer" key={index}>
                     {image.type.startsWith("image") ? (
                         <img className="imagePreview" src={imageURLs[index]} alt="" />
                     ) : (

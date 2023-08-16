@@ -226,6 +226,10 @@ input:checked + .slider:before {
 .inputButton:hover{
   background-color: rgb(150, 187, 200);
 }
+.imageContainer{
+  display: flex;
+  justify-content: space-between;
+}
 .imagePreview{
   margin-top: 0.5em;
   max-width: 93.8px;
@@ -236,11 +240,10 @@ input:checked + .slider:before {
   justify-content: center;
   align-items: center;
   padding: 3em ;
+  
 }
 .removeImageClass{
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  align-self: center;
 }
 .removeImageClass span{
   padding: 0.25rem 0.739rem;
