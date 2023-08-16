@@ -28,10 +28,9 @@ const UploadImage = () => {
         console.log(images);
     }
     const remove = (index) => {
-        console.log(index);
-            const updatedImages = [...images];
-            updatedImages.splice(index, 1);
-            setImages(updatedImages);
+        const updatedImages = [...images];
+        updatedImages.splice(index, 1);
+        setImages(updatedImages);
     }
     function ShortenString(ImageName){
         let maxLength = 20;
@@ -57,22 +56,22 @@ const UploadImage = () => {
                 accept="image/*, video/*"
                 onChange={onImageChange}
                 style={{
-                display:"none"
+                    display:"none"
                 }}/>
             </div>
-            { imageURLs.map(function(imageSrc, index){
-                const isImage = images[index].type.startsWith("image");
-                return(
-                <div className="flex">
-                {isImage ? (
-                    <img className="imagePreview" src={imageSrc} alt="" />
-                ) : (
-                    <img className="imagePreview" src={videoPlaceHolder} alt="" />
-                )}
-                    <div className="imageNameClass">{ShortenString(images[index].name)}</div>
-                    <div onClick={() => remove(index)} className="removeImageClass" ><span>X</span></div>
-                </div>);
-                } )}
+
+            
+            { images.map((image, index) => (
+                <div className="flex" key={index}>
+                    {image.type.startsWith("image") ? (
+                        <img className="imagePreview" src={imageURLs[index]} alt="" />
+                    ) : (
+                        <img className="imagePreview" src={videoPlaceHolder} alt="" />
+                    )}
+                    <div className="imageNameClass">{ShortenString(image.name)}</div>
+                    <div onClick={() => remove(index)} className="removeImageClass"><span>X</span></div>
+                </div>
+            ))}
         </div>
     )
 }
