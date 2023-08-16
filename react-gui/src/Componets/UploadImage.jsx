@@ -5,13 +5,12 @@ import videoPlaceHolder from "./Assets/placeholder.svg"
 
 
 
-
-
-const UploadImage = () => {
+const UploadImage = ({passImages}) => {
     const [images, setImages] = useState([]);
     const [imageURLs, setImageURLs] = useState([]);
     
     useEffect(() => {
+        
         if (images.length < 1) return;
         const newImageUrls = [];
         images.forEach(image => newImageUrls.push(URL.createObjectURL(image)));
@@ -72,6 +71,8 @@ const UploadImage = () => {
                     <div onClick={() => remove(index)} className="removeImageClass"><span>X</span></div>
                 </div>
             ))}
+            <div onClick={() => passImages(images, imageURLs)} className="runBotButton btn"><span>Run Bot</span></div>
+
         </div>
     )
 }

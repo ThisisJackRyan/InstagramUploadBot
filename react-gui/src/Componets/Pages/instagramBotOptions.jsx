@@ -1,9 +1,14 @@
 import { useState } from "react";
 import UploadImage from "../UploadImage";
 
+
+
 const InstagramBotOptions = () => {
     const [postType, setPostType] = useState(""); // State for post type selection
     const [aspectRatio, setAspectRatio] = useState(""); // State for aspect ratio selection
+    const [images, setImages] = useState([]);
+
+
 
     function handlePostTypeChange(type) {
         setPostType(type);
@@ -13,8 +18,19 @@ const InstagramBotOptions = () => {
         setAspectRatio(ratio);
     }
 
-    function runBot(){
-
+    function addImages(img, imgURL){
+        console.log(img);
+        console.log(imgURL);
+   
+        const Options = {
+            "Options" : {
+                "type": postType,
+                "ratio": aspectRatio,
+                "images": img,
+                "imageURL":imgURL
+            }
+        }
+       
     }
 
     return(
@@ -117,9 +133,8 @@ const InstagramBotOptions = () => {
                 </div>
                 <div className="flex center Question"><span>Choose your Media</span></div>
                 <div>
-                    <UploadImage />
+                    <UploadImage  passImages={addImages}/>
                 </div>
-                <div onClick={() => runBot()} className="runBotButton btn"><span>Run Bot</span></div>
             </div>
         </div>
     )
