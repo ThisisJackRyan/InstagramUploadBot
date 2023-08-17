@@ -3,6 +3,7 @@ import UploadImage from "../UploadImage";
 
 
 
+
 const InstagramBotOptions = () => {
     const [postType, setPostType] = useState(""); // State for post type selection
     const [aspectRatio, setAspectRatio] = useState(""); // State for aspect ratio selection
@@ -30,7 +31,7 @@ const InstagramBotOptions = () => {
                 "imageURL":imgURL
             }
         }
-       
+        var OptionString = JSON.stringify(Options);
     }
 
     return(

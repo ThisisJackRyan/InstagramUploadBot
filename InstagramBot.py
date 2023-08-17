@@ -4,10 +4,10 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.common.exceptions import TimeoutException
+import json
 
 
-
-chromeDriverPath = "C:\Program Files (x86)\chromedriver.exe"
+#chromeDriverPath = "C:\Program Files (x86)\chromedriver.exe"
 
 loginEmail = input("What is your Email? ")
 loginPassword =  input("What is your password? ")
@@ -29,7 +29,21 @@ Follow For More!!!
 #buslife #buslifeadventure #busliving #campervan #campervanlife 
 '''
 
+#this is an example of the type of json that will be passed from InstagramBotOptions.jsx to this file.
 
+Options = {
+            "Options" : {
+                "type": "SinglePicture",
+                "ratio": "OriginalSizing",
+                "images": "img",#this will be an array of images
+                "imageURL": "imgURL" #this will be an array of imageURLs
+            }
+        }
+with open("sample.json", "w") as outfile:
+    json.dump(Options, outfile)
+
+with open('sample.json', 'r') as openfile:
+    loadedOptions = json.load(openfile)
 
 
 
@@ -67,14 +81,22 @@ instagramPassword.send_keys(Keys.RETURN)
 
 
 
-def postImages(pic):
 
+
+
+
+
+def jsonFunction():
+     print(loadedOptions["Options"]["type"])
+
+def postImages(pic):
 
     #click the post icon
     findItXPATH("/html/body/div[2]/div/div/div[2]/div/div/div/div[1]/div[1]/div[1]/div/div/div/div/div[2]/div[7]/div/span/div/a") #instagram has doesn't have any Id's that get add on new page. May have to rethink findIT()? 
     postButton = driver.find_element(By.XPATH,'/html/body/div[2]/div/div/div[2]/div/div/div/div[1]/div[1]/div[1]/div/div/div/div/div[2]/div[7]/div/span/div/a')
     postButton.click()
 
+    #image logic
     extraSlash = "\\"
     print(extraSlash + pic)
     imagePath.append(extraSlash + pic)
@@ -82,7 +104,40 @@ def postImages(pic):
     inputImage = driver.find_element(By.XPATH, "/html/body/div[2]/div/div/div[3]/div/div/div[1]/div/div[3]/div/div/div/div/div[2]/div/div/div/div[2]/div[1]/form/input")
     inputImage.send_keys("C:\\Users\\Jack Ryan\\Desktop\\Coding\\Python\\InstagramUploadBot\\Uploadpictures" + imagePath[num] )
 
-    #Click the next button twice            
+
+def singlePicture():
+    print("SinglePicture")
+def Video():
+    print("Video")
+def Carousel():
+    print("Carousel")
+
+
+def OriginalSizing():
+    print("OriginalSizing")
+def oneByOne():
+    print("1:1")
+def fourByFive():
+    print("4:5")
+def SixteenByNine():
+    print("16:9")
+
+    #logic of type,ration needs to go here
+    match(loadedOptions["Options"]["type"]):
+        case "SinglePicture" :
+            singlePicture()
+
+
+
+
+
+
+
+
+
+
+def PostIt():      
+    #Click the next button twice 
     firstNext = driver.find_element(By.XPATH,"/html/body/div[2]/div/div/div[3]/div/div/div[1]/div/div[3]/div/div/div/div/div[2]/div/div/div/div[1]/div/div/div[3]/div/div")
     firstNext.click()
     findItXPATH("/html/body/div[2]/div/div/div[3]/div/div/div[1]/div/div[3]/div/div/div/div/div[2]/div/div/div/div[1]/div/div/div[3]/div/div")
@@ -110,6 +165,7 @@ for pic in pathToPictures:
         postImages(pic)
         num+=1
 
+jsonFunction()
 
 
 
