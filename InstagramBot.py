@@ -105,7 +105,7 @@ def postImages(pic):
     inputImage.send_keys("C:\\Users\\Jack Ryan\\Desktop\\Coding\\Python\\InstagramUploadBot\\Uploadpictures" + imagePath[num] )
 
 
-def singlePicture():
+def SinglePicture():
     print("SinglePicture")
 def Video():
     print("Video")
@@ -124,8 +124,22 @@ def SixteenByNine():
 
     #logic of type,ration needs to go here
     match(loadedOptions["Options"]["type"]):
-        case "SinglePicture" :
-            singlePicture()
+        case "SinglePicture":
+            SinglePicture()
+        case "Video":
+            Video()
+        case "Carousel":
+            Carousel()
+    
+    match(loadedOptions["Options"]["ratio"]):
+        case "OriginalSizing":
+            OriginalSizing()
+        case "1:1":
+            oneByOne()
+        case "4:5":
+            fourByFive()
+        case "16:9":
+            SixteenByNine()
 
 
 
