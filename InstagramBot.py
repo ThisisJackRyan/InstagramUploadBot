@@ -7,7 +7,12 @@ from selenium.common.exceptions import TimeoutException
 import json
 
 
-#chromeDriverPath = "C:\Program Files (x86)\chromedriver.exe"
+if(input("What Device are you on? (1 for Mac)  (2 for Windows)") == 1):
+    chromeDriverPath = "/usr/local/bin/chromedriver.exe"
+else:
+    chromeDriverPath = "C:\Program Files (x86)\chromedriver.exe"
+
+
 
 loginEmail = input("What is your Email? ")
 loginPassword =  input("What is your password? ")
@@ -89,6 +94,31 @@ instagramPassword.send_keys(Keys.RETURN)
 def jsonFunction():
      print(loadedOptions["Options"]["type"])
 
+def SinglePicture():
+    print("SinglePicture")
+def Video():
+    print("Video")
+def Carousel():
+    print("Carousel")
+
+
+def OriginalSizing():
+    print("OriginalSizing")
+    originalSizing = driver.find_element(By.XPATH, "/html/body/div[2]/div/div/div[3]/div/div/div[1]/div/div[3]/div/div/div/div/div[2]/div/div/div/div[2]/div[1]/div/div/div/div[1]/div/div[1]/div/div[1]")
+    originalSizing.click()
+    PostIt()
+def FourByFive():
+    print("4:5")
+    fourByFive = driver.find_element(By.XPATH,"/html/body/div[2]/div/div/div[3]/div/div/div[1]/div/div[3]/div/div/div/div/div[2]/div/div/div/div[2]/div[1]/div/div/div/div[1]/div/div[1]/div/div[3]")
+    fourByFive.click()
+    PostIt()
+def SixteenByNine():
+    print("16:9")
+    sixteenByNine = driver.find_element(By.XPATH, "/html/body/div[2]/div/div/div[3]/div/div/div[1]/div/div[3]/div/div/div/div/div[2]/div/div/div/div[2]/div[1]/div/div/div/div[1]/div/div[1]/div/div[4]")
+    sixteenByNine.click()
+    PostIt()
+
+
 def postImages(pic):
 
     #click the post icon
@@ -105,23 +135,10 @@ def postImages(pic):
     inputImage.send_keys("C:\\Users\\Jack Ryan\\Desktop\\Coding\\Python\\InstagramUploadBot\\Uploadpictures" + imagePath[num] )
 
 
-def SinglePicture():
-    print("SinglePicture")
-def Video():
-    print("Video")
-def Carousel():
-    print("Carousel")
 
-
-def OriginalSizing():
-    print("OriginalSizing")
-def oneByOne():
-    print("1:1")
-def fourByFive():
-    print("4:5")
-def SixteenByNine():
-    print("16:9")
-
+    findItXPATH("/html/body/div[2]/div/div/div[3]/div/div/div[1]/div/div[3]/div/div/div/div/div[2]/div/div/div/div[2]/div[1]/div/div/div/div[1]/div/div[2]/div/button")
+    ratioButton = driver.find_element(By.XPATH, "/html/body/div[2]/div/div/div[3]/div/div/div[1]/div/div[3]/div/div/div/div/div[2]/div/div/div/div[2]/div[1]/div/div/div/div[1]/div/div[2]/div/button")
+    ratioButton.click()
     #logic of type,ration needs to go here
     match(loadedOptions["Options"]["type"]):
         case "SinglePicture":
@@ -134,10 +151,12 @@ def SixteenByNine():
     match(loadedOptions["Options"]["ratio"]):
         case "OriginalSizing":
             OriginalSizing()
+        #Default
         case "1:1":
-            oneByOne()
+            print("1:1")
+            PostIt()
         case "4:5":
-            fourByFive()
+            FourByFive()
         case "16:9":
             SixteenByNine()
 
@@ -164,8 +183,8 @@ def PostIt():
     captionLocation.send_keys(accountCaption)
 
     #Share the IMAGE!!!
-    shareButton = driver.find_element(By.XPATH,"/html/body/div[2]/div/div/div[3]/div/div/div[1]/div/div[3]/div/div/div/div/div[2]/div/div/div/div[1]/div/div/div[3]/div/div")
-    shareButton.click()
+    #shareButton = driver.find_element(By.XPATH,"/html/body/div[2]/div/div/div[3]/div/div/div[1]/div/div[3]/div/div/div/div/div[2]/div/div/div/div[1]/div/div/div[3]/div/div")
+    #shareButton.click()
 
     findItXPATH("/html/body/div[2]/div/div/div[3]/div/div/div[1]/div/div[3]/div/div/div/div/div[2]/div/div/div/div[2]/div[1]/div/div[2]/div/span")
     exit = driver.find_element(By.XPATH,"/html/body/div[2]/div/div/div[3]/div/div/div[1]/div/div[2]/div")
