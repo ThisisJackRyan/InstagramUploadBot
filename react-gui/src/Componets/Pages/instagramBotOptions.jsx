@@ -23,7 +23,7 @@ const InstagramBotOptions = () => {
         console.log(img);
         console.log(imgURL);
    
-        const Options = {
+        const options = {
             "Options" : {
                 "type": postType,
                 "ratio": aspectRatio,
@@ -31,7 +31,19 @@ const InstagramBotOptions = () => {
                 "imageURL":imgURL
             }
         }
-        var OptionString = JSON.stringify(Options);
+
+        // Convert JSON data to string and save to a file
+        const jsonBlob = new Blob([JSON.stringify(options)], { type: 'application/json' });
+        const downloadLink = document.createElement('a');
+        downloadLink.href = URL.createObjectURL(jsonBlob);
+        downloadLink.download = 'data.json';
+        downloadLink.click();
+        /*const fs = require("fs");
+        fs.writeFile("sample.json", JSON.stringify(options), err => {
+            if (err) throw err;
+        
+            console.log("Done writing");
+        })*/
     }
 
     return(
